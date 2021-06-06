@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block style_css %}
+<link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="row row-cols-3 row-cols-md-3 g-3">
+        {% for new in news %}
+             <div class="col-5 col-md-5 col-sm-5 col-lg-4">
+                <div class="card h-80 mt-3 "  >
+                    <div class="card-header ">
+                        {#                    <h3>{{ new.my_func }}</h3>#}
+                                            Категория: <a href="{% url 'category' categ.pk %}">{{ new.category }}</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="media">
+                            {% if new.photo %}
+                                <img src="{{ new.photo.url }}" alt="" width="200" height="200" class="mr-3">
+                            {% else %}
+                                <img src="https://static6.depositphotos.com/1002881/300/i/600/depositphotos_5804811-stock-photo-error-404.jpg"
+                                     width="200" height="200" class="mr-3">
+                            {% endif %}
+                            <div class="media-body">
+                                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ new.title }}</h5>
+                                <p class="card-text">{{ new.content|truncatewords:5}}</p>
+                                <a href="{{ new.get_absolute_url }}" class="btn btn-primary"> Read more...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{ new.create_at|date:"Y-m-d H:i:s" }}
+                    </div>
+                </div>
+             </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Тестовая :: {{ block.super }}
+{% endblock %}
+
+{% block style_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Тестовая страница</h1>
+
+    {% for name in page_obj.object_list %}
+        <p>{{ name }}</p>
+    {% endfor %}
+
+</nav>
+
+{% endblock %}

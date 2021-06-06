@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Добавление новости :: {{ block.super }}
+{% endblock %}
+
+{% block style_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{#{% block sidebar %}#}
+{#    <div class="badge bg-primary text-wrap fs-4" >Регистрация нового пользователя</div>#}
+{#    {% include 'inc/_sidebar.html' %}#}
+{#{% endblock %}#}
+
+
+{% block content %}
+    <h1>Регистрация</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">
+            Регистрац
+        </button>
+    </form>
+
+{% endblock %}
